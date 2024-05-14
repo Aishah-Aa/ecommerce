@@ -1,29 +1,25 @@
-import {createBrowserRouter,RouterProvider,} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { Home } from "./Pages/home"
+import { Dashboard } from "./Pages/dashboard"
+import { createContext, useState } from "react"
+import { Product } from "./types"
 
-import api from "./api"
 import "./App.css"
-
-import { Home } from "./Pages/home";
-import { Dashboard } from "./Pages/dashboard";
-import { createContext, useState } from "react";
-import { Product } from "./types";
-
-
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>
+    element: <Home />
   },
   {
     path: "/dashboard",
-    element: <Dashboard/>
-  },
-]);
+    element: <Dashboard />
+  }
+])
 
 type GlobalContextType = {
   state: GlobalState
-  handleAddToCart: (product: Product)=> void 
+  handleAddToCart: (product: Product) => void //have products here to fetch them if i want them everywhere
 }
 
 type GlobalState = {
@@ -39,21 +35,21 @@ function App() {
   const handleAddToCart = (product: Product) => {
     setState({
       ...state,
-      cart:[...state.cart, product]
+      cart: [...state.cart, product]
     })
   }
 
   // const handleRemoveFromCart = (product: Product) => {
-  //   setState({  - fill from the array,then update the state with the new filter 
-  //     ...state, - then pass it to the context then take it from there 
+  //   setState({  - fill from the array,then update the state with the new filter
+  //     ...state, - then pass it to the context then take it from there
   //     cart:[...state.cart, product]
   //   })
   // }
   return (
     <div className="App">
-      <GlobalContext.Provider value = {{state, handleAddToCart}}>
-     <RouterProvider router={router} /> 
-     </GlobalContext.Provider>
+      <GlobalContext.Provider value={{ state, handleAddToCart }}>
+        <RouterProvider router={router} />
+      </GlobalContext.Provider>
     </div>
   )
 }
