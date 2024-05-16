@@ -19,7 +19,8 @@ const router = createBrowserRouter([
 
 type GlobalContextType = {
   state: GlobalState
-  handleAddToCart: (product: Product) => void //have products here to fetch them if i want them everywhere
+  handleAddToCart: (product: Product) => void
+  handleDeleteFromCart: (id: string) => void //have products here to fetch them if i want them everywhere
 }
 
 type GlobalState = {
@@ -33,21 +34,29 @@ function App() {
   })
 
   const handleAddToCart = (product: Product) => {
+    console.log("product ")
+    const foundProduct = state.cart.find((cartItem) => cartItem.id == product.id)
+
+    if (foundProduct != null) {
+      throw new Error("Product is already in cart ")
+    }
     setState({
       ...state,
       cart: [...state.cart, product]
     })
   }
 
-  // const handleRemoveFromCart = (product: Product) => {
-  //   setState({  - fill from the array,then update the state with the new filter
-  //     ...state, - then pass it to the context then take it from there
-  //     cart:[...state.cart, product]
-  //   })
-  // }
+  const handleDeleteFromCart = (id: string) => {
+    const filteredCart = state.cart.filter((item) => item.id !== id)
+    setState({
+      ...state,
+      cart: filteredCart
+    })
+  }
+
   return (
     <div className="App">
-      <GlobalContext.Provider value={{ state, handleAddToCart }}>
+      <GlobalContext.Provider value={{ state, handleAddToCart, handleDeleteFromCart }}>
         <RouterProvider router={router} />
       </GlobalContext.Provider>
     </div>

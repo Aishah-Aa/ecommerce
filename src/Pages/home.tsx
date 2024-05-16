@@ -1,5 +1,6 @@
 import { GlobalContext } from "@/App"
-import api from "@/api"
+import { useContext } from "react"
+import { Navbar } from "@/components/navbar"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -11,12 +12,14 @@ import {
 } from "@/components/ui/card"
 import { Product } from "@/types"
 import { useQuery } from "@tanstack/react-query"
-import { useContext } from "react"
+
+import api from "@/api"
+
 
 export function Home() {
   const context = useContext(GlobalContext)
   if (!context) throw Error("Context is missing")
-  const { state, handleAddToCart } = context
+  const { handleAddToCart } = context
 
   const getProducts = async () => {
     try {
@@ -40,17 +43,18 @@ export function Home() {
 
   return (
     <>
-      <h1 className="text-2xl uppercase mb-10">Products</h1>
-      <h3>Cart ({state.cart.length})</h3>
+      <Navbar />
+      
       <section className="flex flex-col md:flex-row gap-4 max-w-6xl mx-auto flex-wrap">
         {data?.map((product) => (
           <Card key={product.id} className="w-[270px]">
             <CardHeader>
+              <img alt={product.name} src={product.image} className="mb-2 h-44  object-contain" />
               <CardTitle>{product.name}</CardTitle>
               <CardDescription>Read More..</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>Card Content Here</p>
+              <p>{product.price}.00SR</p>
             </CardContent>
             <CardFooter>
               <Button className="w-full" onClick={() => handleAddToCart(product)}>
