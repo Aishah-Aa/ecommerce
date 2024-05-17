@@ -4,6 +4,6 @@ export type Product = {
   categoryId: number
   image: string
   price: number 
-  quantity: number
+  stock: number
   
 }

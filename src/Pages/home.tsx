@@ -1,7 +1,3 @@
-import { GlobalContext } from "@/App"
-import { useContext } from "react"
-import { Navbar } from "@/components/navbar"
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -10,10 +6,16 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card"
-import { Product } from "@/types"
 import { useQuery } from "@tanstack/react-query"
 
+import { Product } from "@/types"
+import { Button } from "@/components/ui/button"
 import api from "@/api"
+import {  Navbar } from "@/components/navbar"
+import { GlobalContext } from "@/App"
+import { useContext } from "react"
+import { Link } from "react-router-dom"
+
 
 
 export function Home() {
@@ -37,9 +39,6 @@ export function Home() {
     queryFn: getProducts
   })
 
-  // const onChange = (e) => {
-  //   console.log(e.target.value)
-  // }
 
   return (
     <>
@@ -56,7 +55,10 @@ export function Home() {
             <CardContent>
               <p>{product.price}.00SR</p>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex justify-between">
+              <Button variant="outline">
+                <Link to={`/products/${product.id}`}>More Details</Link>
+              </Button>
               <Button className="w-full" onClick={() => handleAddToCart(product)}>
                 Add to cart
               </Button>

@@ -5,6 +5,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList
 } from "./ui/navigation-menu"
+
 import { Cart } from "./cart"
 
 export function Navbar() {

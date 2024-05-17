@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createContext, useState } from "react"
+
+import { Product } from "./types"
+import "./App.css"
+import { ProductDetails } from "./Pages/productDetails"
 import { Home } from "./Pages/home"
 import { Dashboard } from "./Pages/dashboard"
-import { createContext, useState } from "react"
-import { Product } from "./types"
 
-import "./App.css"
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />
+  },
+  {
+    path: "/products/:productId",
+    element: <ProductDetails />
   }
 ])
 
