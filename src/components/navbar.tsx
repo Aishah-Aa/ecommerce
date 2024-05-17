@@ -17,7 +17,7 @@ export function Navbar() {
       <NavigationMenu>
         <NavigationMenuList className="gap-4">
           <NavigationMenuItem >
-            <Link to="/docs">
+            <Link to="/">
               <NavigationMenuLink>Home</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
@@ -29,7 +29,7 @@ export function Navbar() {
             </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link to="/docs">
+            <Link to="/dashboard">
               <NavigationMenuLink>Dashboard</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

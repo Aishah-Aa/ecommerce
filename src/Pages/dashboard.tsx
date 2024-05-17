@@ -15,6 +15,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 
 import api from "@/api"
+import { Navbar } from "@/components/navbar"
 
 export function Dashboard() {
   const queryClient = useQueryClient()
@@ -68,6 +69,7 @@ export function Dashboard() {
 
   return (
     <>
+    <Navbar/>
       <form className="mt-20 w-1/3 mx-auto" onSubmit={handleSubmit}>
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight"> Add New Products</h3>
         <Input className="mt4" type="text" placeholder="Name" onChange={handleChange} />
