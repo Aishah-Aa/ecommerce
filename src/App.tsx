@@ -6,6 +6,9 @@ import "./App.css"
 import { ProductDetails } from "./Pages/productDetails"
 import { Home } from "./Pages/home"
 import { Dashboard } from "./Pages/dashboard"
+import { Login } from "./Pages/login"
+import { Signup } from "./Pages/signup"
+import { PrivateRoute, WithAuth } from "./components/privateRoute"
 
 
 const router = createBrowserRouter([
@@ -14,8 +17,19 @@ const router = createBrowserRouter([
     element: <Home />
   },
   {
+    path: "/signup",
+    element: <Signup />
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
     path: "/dashboard",
-    element: <Dashboard />
+    element:(
+    <PrivateRoute> 
+    <Dashboard />
+    </PrivateRoute> )
   },
   {
     path: "/products/:productId",
@@ -40,7 +54,7 @@ function App() {
   })
 
   const handleAddToCart = (product: Product) => {
-    console.log("product ")
+    
     const foundProduct = state.cart.find((cartItem) => cartItem.id == product.id)
 
     if (foundProduct != null) {

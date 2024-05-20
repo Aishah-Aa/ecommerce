@@ -23,8 +23,20 @@ export function Navbar() {
           </NavigationMenuItem>
           
             <NavigationMenuItem>
+            <Link to="/signup">
+              <NavigationMenuLink>Signup</NavigationMenuLink>
+            </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+            <Link to="/login">
+              <NavigationMenuLink>Login</NavigationMenuLink>
+            </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
             <Link to="/docs">
-              <NavigationMenuLink>About Us</NavigationMenuLink>
+              <NavigationMenuLink>About Us </NavigationMenuLink>
             </Link>
             </NavigationMenuItem>
 

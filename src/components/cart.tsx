@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Button } from "./ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { ShoppingCart } from "lucide-react";
 
+import { Button } from "./ui/button";
 import { GlobalContext } from "@/App";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 export function Cart (){
 

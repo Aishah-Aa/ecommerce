@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { ChangeEvent, FormEvent, useContext, useState } from "react"
-import { Form, Link, useSearchParams } from "react-router-dom"
+import {  Link, useSearchParams } from "react-router-dom"
 
 import { Product } from "@/types"
 import { Button } from "@/components/ui/button"
@@ -69,7 +69,7 @@ export function Home() {
       <Navbar />
 
       <div> 
-      <form onSubmit={handleSearch} className=" flex gap-4 mt-10 w-full md:1/2 mx-auto mb-10">
+      <form onSubmit={handleSearch} className=" flex gap-4 mt-10 w- md:1/2 mx-auto mb-10">
       <Input type="search" placeholder="Search for a product here" onChange={handleChange}/>
       <Button type="submit">Search</Button>
       </form>
@@ -86,7 +86,7 @@ export function Home() {
             <CardContent>
               <p>{product.price}.00SR</p>
             </CardContent>
-            <CardFooter className="flex justify-between">
+            <CardFooter className="flex justify-between gap-4 ">
               <Button variant="outline">
                 <Link to={`/products/${product.id}`}>More Details</Link>
               </Button>

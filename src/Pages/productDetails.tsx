@@ -9,7 +9,6 @@ import {  Navbar } from "@/components/navbar"
 export function ProductDetails(){
 
     const params = useParams()
-    console.log("params:",params)
 
     const getProduct = async () => {
         try {
@@ -27,7 +26,6 @@ export function ProductDetails(){
         queryFn: getProduct
       })
 
-    console.log(product)
 
      if (isLoading) {
         return <p>Loading...</p>
