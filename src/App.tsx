@@ -1,14 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 
-import { Product } from "./types"
+import { DecodedUser, Product } from "./types"
 import "./App.css"
 import { ProductDetails } from "./Pages/productDetails"
 import { Home } from "./Pages/home"
 import { Dashboard } from "./Pages/dashboard"
 import { Login } from "./Pages/login"
 import { Signup } from "./Pages/signup"
-import { PrivateRoute, WithAuth } from "./components/privateRoute"
+import { PrivateRoute } from "./components/privateRoute"
 
 
 const router = createBrowserRouter([
@@ -41,17 +41,33 @@ type GlobalContextType = {
   state: GlobalState
   handleAddToCart: (product: Product) => void
   handleDeleteFromCart: (id: string) => void //have products here to fetch them if i want them everywhere
+  handleStoreUser: (user: DecodedUser) => void 
 }
 
 type GlobalState = {
   cart: Product[]
+  user: DecodedUser | null 
 }
+
 export const GlobalContext = createContext<GlobalContextType | null>(null)
 
 function App() {
   const [state, setState] = useState<GlobalState>({
-    cart: []
+    cart: [],
+    user: null 
   })
+
+   useEffect (()=> {
+    const user = localStorage.getItem("user") 
+    if(user) { 
+      const decodedUser = JSON.parse(user) 
+      setState({
+      ...state,
+      user: decodedUser
+      })
+    } 
+    }, []) 
+
 
   const handleAddToCart = (product: Product) => {
     
@@ -74,9 +90,16 @@ function App() {
     })
   }
 
+  const handleStoreUser = (user: DecodedUser) => {
+    setState({
+      ...state,
+      user:user
+    })
+  }
+
   return (
     <div className="App">
-      <GlobalContext.Provider value={{ state, handleAddToCart, handleDeleteFromCart }}>
+      <GlobalContext.Provider value={{ state, handleAddToCart, handleDeleteFromCart, handleStoreUser }}>
         <RouterProvider router={router} />
       </GlobalContext.Provider>
     </div>

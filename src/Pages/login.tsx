@@ -1,11 +1,19 @@
+import jwt from "jwt-decode"
+import { ChangeEvent, FormEvent, useContext, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+
+import { GlobalContext } from "@/App"
 import api from "@/api"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ChangeEvent, FormEvent, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { reshapeUser } from "@/lib/utils"
 
 export function Login() {
     const navigate = useNavigate()
+    const context = useContext(GlobalContext)
+    if (!context) throw Error("Context is missing")
+    const { handleStoreUser } = context
+  
     const [user, setUser] = useState({
     email: "",
     password: ""
@@ -35,7 +43,12 @@ export function Login() {
     
     const token = await handleLogin()
     if(token) {
-      localStorage.setItem("token", token)  
+      const decodedToken = jwt(token)
+      const user = reshapeUser(decodedToken)
+      localStorage.setItem("token", token)
+      localStorage.setItem("user", JSON.stringify(user))
+      
+      handleStoreUser(user) 
       navigate("/")
     }
     

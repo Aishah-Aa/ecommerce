@@ -18,7 +18,7 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table"
-import { Category, DecodedUser, Product, ROLE, User } from "@/types"
+import { Category, Product, User } from "@/types"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import {  useState } from "react"
 
@@ -29,11 +29,10 @@ import { Input } from "@/components/ui/input"
 import api from "@/api"
 import { Navbar } from "@/components/navbar"
 import { EditDialog } from "@/components/editDialog"
-import { useNavigate } from "react-router-dom"
+
 
 export function Dashboard() {
   const queryClient = useQueryClient()
-  const navigate = useNavigate()
 
   const [product, setProduct] = useState({
     name: "",
@@ -43,9 +42,6 @@ export function Dashboard() {
   })
 
   
- 
-  
-
   const postProduct = async () => {
     try {
       const res = await api.post("/products", product)

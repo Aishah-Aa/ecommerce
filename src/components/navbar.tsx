@@ -7,8 +7,16 @@ import {
 } from "./ui/navigation-menu"
 
 import { Cart } from "./cart"
+import { useContext } from "react"
+import { GlobalContext } from "@/App"
+import { ROLE } from "@/types"
 
 export function Navbar() {
+
+  const context = useContext(GlobalContext)
+  if (!context) throw Error("Context is missing")
+  const { state } = context
+  console.log(state)
 
   return (
     <div className="flex justify-between">
@@ -22,17 +30,17 @@ export function Navbar() {
             </Link>
           </NavigationMenuItem>
           
-            <NavigationMenuItem>
+           {!state.user && <NavigationMenuItem>
             <Link to="/signup">
               <NavigationMenuLink>Signup</NavigationMenuLink>
             </Link>
-            </NavigationMenuItem>
+            </NavigationMenuItem>}
 
-            <NavigationMenuItem>
+           {! state.user && ( <NavigationMenuItem>
             <Link to="/login">
               <NavigationMenuLink>Login</NavigationMenuLink>
             </Link>
-            </NavigationMenuItem>
+            </NavigationMenuItem> )} 
 
             <NavigationMenuItem>
             <Link to="/docs">
@@ -40,11 +48,11 @@ export function Navbar() {
             </Link>
             </NavigationMenuItem>
 
-          <NavigationMenuItem>
+          { state.user?.role === ROLE.Admin && <NavigationMenuItem>
             <Link to="/dashboard">
               <NavigationMenuLink>Dashboard</NavigationMenuLink>
             </Link>
-          </NavigationMenuItem>
+          </NavigationMenuItem>}
         </NavigationMenuList>
       </NavigationMenu>
 

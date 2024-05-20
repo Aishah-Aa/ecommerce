@@ -1,14 +1,14 @@
-import { ROLE } from "@/types";
-import { ReactElement, useEffect } from "react";
-import jwt from "jwt-decode"
-import { Login } from "@/Pages/login";
 import { Navigate } from "react-router-dom";
+import { ReactElement } from "react";
+import jwt from "jwt-decode"
 
+import { reshapeUser } from "@/lib/utils";
+import { ROLE } from "@/types";
 export function PrivateRoute ({ children }: { children: ReactElement}){
     
     const token = localStorage.getItem("token") || ""
   const decodedToken = jwt(token)
-  const decodedUser: any = {}
+  const decodedUser = reshapeUser(decodedToken)
 
   if(decodedToken) {
     for (const [key, value]  of Object.entries(decodedToken)) {
@@ -30,5 +30,5 @@ export function PrivateRoute ({ children }: { children: ReactElement}){
   
 
     console.log("GLOBAL DATA")
-    return decodedUser.role === ROLE.Customer? < Navigate to= "/Login" /> :children
+    return decodedUser.role === ROLE.Customer? < Navigate to= "/" /> :children
 } 
