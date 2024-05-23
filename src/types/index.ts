@@ -3,35 +3,34 @@ export type Product = {
   name: string
   categoryId: string
   image: string
-  price: number 
+  price: number
 }
- 
+
 export type Category = {
-  
-    id: string
-    name: string
+  id: string
+  name: string
 }
 
 export type User = {
-  id: string,
-  firstName: string,
-  lastName: string,
-  phoneNumber: string,
-  email: string,
+  id: string
+  firstName: string
+  lastName: string
+  phoneNumber: string
+  email: string
   role: string
 }
 
 export const ROLE = {
   Admin: "Admin",
   Customer: "Customer"
-} as const 
+} as const
 
 export type DecodedUser = {
   aud: string
   emailaddress: string
-  exp: number 
-  iss: string 
+  exp: number
+  iss: string
   name: string
   nameidentifier: string
-  role: keyof typeof ROLE 
+  role: keyof typeof ROLE
 }

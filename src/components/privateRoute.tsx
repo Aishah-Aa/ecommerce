@@ -1,34 +1,32 @@
-import { Navigate } from "react-router-dom";
-import { ReactElement } from "react";
+import { Navigate } from "react-router-dom"
+import { ReactElement } from "react"
 import jwt from "jwt-decode"
 
-import { reshapeUser } from "@/lib/utils";
-import { ROLE } from "@/types";
-export function PrivateRoute ({ children }: { children: ReactElement}){
-    
-    const token = localStorage.getItem("token") || ""
+import { reshapeUser } from "@/lib/utils"
+import { ROLE } from "@/types"
+
+export function PrivateRoute({ children }: { children: ReactElement }) {
+  const token = localStorage.getItem("token") || ""
   const decodedToken = jwt(token)
   const decodedUser = reshapeUser(decodedToken)
 
-  if(decodedToken) {
-    for (const [key, value]  of Object.entries(decodedToken)) {
+  if (decodedToken) {
+    for (const [key, value] of Object.entries(decodedToken)) {
       let cleankey = ""
 
-      if(key.startsWith("http")){
-         cleankey = key.split("identity/claims/")[1]
+      if (key.startsWith("http")) {
+        cleankey = key.split("identity/claims/")[1]
       } else {
-        cleankey = key 
+        cleankey = key
       }
-      
-      decodedUser[cleankey] = value 
+
+      decodedUser[cleankey] = value
     }
   }
 
   console.log("decodedToken:", decodedToken)
   console.log("decodedUser:", decodedUser)
-  
-  
 
-    console.log("GLOBAL DATA")
-    return decodedUser.role === ROLE.Customer? < Navigate to= "/" /> :children
-} 
+  console.log("GLOBAL DATA")
+  return decodedUser.role === ROLE.Customer ? <Navigate to="/" /> : children
+}

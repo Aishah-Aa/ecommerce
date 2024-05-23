@@ -9,16 +9,15 @@ import { Input } from "@/components/ui/input"
 import { reshapeUser } from "@/lib/utils"
 
 export function Login() {
-    const navigate = useNavigate()
-    const context = useContext(GlobalContext)
-    if (!context) throw Error("Context is missing")
-    const { handleStoreUser } = context
-  
-    const [user, setUser] = useState({
+  const navigate = useNavigate()
+  const context = useContext(GlobalContext)
+  if (!context) throw Error("Context is missing")
+  const { handleStoreUser } = context
+
+  const [user, setUser] = useState({
     email: "",
     password: ""
   })
-  
 
   const handleLogin = async () => {
     try {
@@ -40,18 +39,17 @@ export function Login() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    
+
     const token = await handleLogin()
-    if(token) {
+    if (token) {
       const decodedToken = jwt(token)
       const user = reshapeUser(decodedToken)
       localStorage.setItem("token", token)
       localStorage.setItem("user", JSON.stringify(user))
-      
-      handleStoreUser(user) 
+
+      handleStoreUser(user)
       navigate("/")
     }
-    
   }
 
   return (

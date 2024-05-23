@@ -12,7 +12,6 @@ import { GlobalContext } from "@/App"
 import { ROLE } from "@/types"
 
 export function Navbar() {
-
   const context = useContext(GlobalContext)
   if (!context) throw Error("Context is missing")
   const { state } = context
@@ -24,39 +23,45 @@ export function Navbar() {
 
       <NavigationMenu>
         <NavigationMenuList className="gap-4">
-          <NavigationMenuItem >
+          <NavigationMenuItem>
             <Link to="/">
               <NavigationMenuLink>Home</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          
-           {!state.user && <NavigationMenuItem>
-            <Link to="/signup">
-              <NavigationMenuLink>Signup</NavigationMenuLink>
-            </Link>
-            </NavigationMenuItem>}
 
-           {! state.user && ( <NavigationMenuItem>
-            <Link to="/login">
-              <NavigationMenuLink>Login</NavigationMenuLink>
-            </Link>
-            </NavigationMenuItem> )} 
-
+          {!state.user && (
             <NavigationMenuItem>
+              <Link to="/signup">
+                <NavigationMenuLink>Signup</NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
+
+          {!state.user && (
+            <NavigationMenuItem>
+              <Link to="/login">
+                <NavigationMenuLink>Login</NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
+
+          <NavigationMenuItem>
             <Link to="/docs">
               <NavigationMenuLink>About Us </NavigationMenuLink>
             </Link>
-            </NavigationMenuItem>
+          </NavigationMenuItem>
 
-          { state.user?.role === ROLE.Admin && <NavigationMenuItem>
-            <Link to="/dashboard">
-              <NavigationMenuLink>Dashboard</NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>}
+          {state.user?.role === ROLE.Admin && (
+            <NavigationMenuItem>
+              <Link to="/dashboard">
+                <NavigationMenuLink>Dashboard</NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
         </NavigationMenuList>
       </NavigationMenu>
 
-      <Cart/>
+      <Cart />
     </div>
   )
 }

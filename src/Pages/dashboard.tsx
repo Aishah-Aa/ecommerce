@@ -18,17 +18,15 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table"
-import { Category, Product, User } from "@/types"
+import { useState } from "react"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
-import {  useState } from "react"
-
-
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import api from "@/api"
 import { Navbar } from "@/components/navbar"
 import { EditDialog } from "@/components/editDialog"
+import { Category, Product, User } from "@/types"
 
 
 export function Dashboard() {
@@ -41,7 +39,6 @@ export function Dashboard() {
     image: ""
   })
 
-  
   const postProduct = async () => {
     try {
       const res = await api.post("/products", product)
@@ -55,7 +52,7 @@ export function Dashboard() {
   const getProducts = async () => {
     try {
       const res = await api.get("/products")
-      
+
       return res.data
     } catch (error) {
       console.error(error)
@@ -78,10 +75,11 @@ export function Dashboard() {
       return Promise.reject(new Error("Something went wrong"))
     }
   }
+  
   const getUsers = async () => {
     try {
       const token = localStorage.getItem("token")
-      
+
       const res = await api.get("/users", {
         headers: {
           Authorization: `Bearer ${token}`
@@ -136,8 +134,6 @@ export function Dashboard() {
       [name]: value
     })
   }
-
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault()

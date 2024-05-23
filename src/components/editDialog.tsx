@@ -1,4 +1,4 @@
- import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { useQueryClient } from "@tanstack/react-query"
 import {
   Dialog,
@@ -29,7 +29,6 @@ export function EditDialog({ product }: { product: Product }) {
       return Promise.reject(new Error("Something went wrong"))
     }
   }
- 
 
   const handleChnage = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target

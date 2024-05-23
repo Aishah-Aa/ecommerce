@@ -10,7 +10,6 @@ import { Login } from "./Pages/login"
 import { Signup } from "./Pages/signup"
 import { PrivateRoute } from "./components/privateRoute"
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,10 +25,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element:(
-    <PrivateRoute> 
-    <Dashboard />
-    </PrivateRoute> )
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    )
   },
   {
     path: "/products/:productId",
@@ -41,12 +41,12 @@ type GlobalContextType = {
   state: GlobalState
   handleAddToCart: (product: Product) => void
   handleDeleteFromCart: (id: string) => void //have products here to fetch them if i want them everywhere
-  handleStoreUser: (user: DecodedUser) => void 
+  handleStoreUser: (user: DecodedUser) => void
 }
 
 type GlobalState = {
   cart: Product[]
-  user: DecodedUser | null 
+  user: DecodedUser | null
 }
 
 export const GlobalContext = createContext<GlobalContextType | null>(null)
@@ -54,28 +54,22 @@ export const GlobalContext = createContext<GlobalContextType | null>(null)
 function App() {
   const [state, setState] = useState<GlobalState>({
     cart: [],
-    user: null 
+    user: null
   })
 
-   useEffect (()=> {
-    const user = localStorage.getItem("user") 
-    if(user) { 
-      const decodedUser = JSON.parse(user) 
+  useEffect(() => {
+    const user = localStorage.getItem("user")
+    if (user) {
+      const decodedUser = JSON.parse(user)
       setState({
-      ...state,
-      user: decodedUser
+        ...state,
+        user: decodedUser
       })
-    } 
-    }, []) 
-
+    }
+  }, [])
 
   const handleAddToCart = (product: Product) => {
     
-    const foundProduct = state.cart.find((cartItem) => cartItem.id == product.id)
-
-    if (foundProduct != null) {
-      throw new Error("Product is already in cart ")
-    }
     setState({
       ...state,
       cart: [...state.cart, product]
@@ -83,23 +77,28 @@ function App() {
   }
 
   const handleDeleteFromCart = (id: string) => {
-    const filteredCart = state.cart.filter((item) => item.id !== id)
+    const cart = state.cart
+    const index = state.cart.findIndex((item) => item.id === id) 
+    cart.splice(index, 1)
+
     setState({
       ...state,
-      cart: filteredCart
+      cart: cart
     })
   }
 
   const handleStoreUser = (user: DecodedUser) => {
     setState({
       ...state,
-      user:user
+      user: user
     })
   }
 
   return (
     <div className="App">
-      <GlobalContext.Provider value={{ state, handleAddToCart, handleDeleteFromCart, handleStoreUser }}>
+      <GlobalContext.Provider
+        value={{ state, handleAddToCart, handleDeleteFromCart, handleStoreUser }}
+      >
         <RouterProvider router={router} />
       </GlobalContext.Provider>
     </div>
