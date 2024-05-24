@@ -23,10 +23,11 @@ export function PrivateRoute({ children }: { children: ReactElement }) {
       decodedUser[cleankey] = value
     }
   }
+  if (!token) return <Navigate to="/" />
 
   console.log("decodedToken:", decodedToken)
   console.log("decodedUser:", decodedUser)
 
-  console.log("GLOBAL DATA")
+  
   return decodedUser.role === ROLE.Customer ? <Navigate to="/" /> : children
 }

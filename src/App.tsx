@@ -42,6 +42,8 @@ type GlobalContextType = {
   handleAddToCart: (product: Product) => void
   handleDeleteFromCart: (id: string) => void //have products here to fetch them if i want them everywhere
   handleStoreUser: (user: DecodedUser) => void
+  handleRemoveUser: () => void
+  handleRemoveCart: () => void
 }
 
 type GlobalState = {
@@ -69,7 +71,6 @@ function App() {
   }, [])
 
   const handleAddToCart = (product: Product) => {
-    
     setState({
       ...state,
       cart: [...state.cart, product]
@@ -78,12 +79,19 @@ function App() {
 
   const handleDeleteFromCart = (id: string) => {
     const cart = state.cart
-    const index = state.cart.findIndex((item) => item.id === id) 
+    const index = state.cart.findIndex((item) => item.id === id)
     cart.splice(index, 1)
 
     setState({
       ...state,
       cart: cart
+    })
+  }
+
+  const handleRemoveCart = () => {
+    setState({
+      ...state,
+      cart: []
     })
   }
 
@@ -94,10 +102,24 @@ function App() {
     })
   }
 
+  const handleRemoveUser = () => {
+    setState({
+      ...state,
+      user: null
+    })
+  }
+
   return (
     <div className="App">
       <GlobalContext.Provider
-        value={{ state, handleAddToCart, handleDeleteFromCart, handleStoreUser }}
+        value={{
+          state,
+          handleAddToCart,
+          handleDeleteFromCart,
+          handleStoreUser,
+          handleRemoveCart,
+          handleRemoveUser
+        }}
       >
         <RouterProvider router={router} />
       </GlobalContext.Provider>

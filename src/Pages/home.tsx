@@ -19,8 +19,6 @@ import { Input } from "@/components/ui/input"
 
 
 
-
-
 export function Home() {
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -69,7 +67,7 @@ export function Home() {
       <Navbar />
 
       <div> 
-      <form onSubmit={handleSearch} className=" flex gap-4 mt-10 w- md:1/2 mx-auto mb-10">
+      <form onSubmit={handleSearch} className=" flex gap-4 mt-10 w-11/12 md:1/2 mx-auto mb-10">
       <Input type="search" placeholder="Search for a product here" onChange={handleChange}/>
       <Button type="submit">Search</Button>
       </form>
