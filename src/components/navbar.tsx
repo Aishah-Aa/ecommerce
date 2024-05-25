@@ -11,6 +11,8 @@ import { useContext } from "react"
 import { GlobalContext } from "@/App"
 import { ROLE } from "@/types"
 import { Button } from "./ui/button"
+import { CakeSlice } from "lucide-react"
+
 
 export function Navbar() {
   const context = useContext(GlobalContext)
@@ -30,19 +32,32 @@ export function Navbar() {
   }
 
   return (
+    <header>
     <div className="flex justify-between">
-      <h3>Sweet Rolls Logo</h3>
+      <CakeSlice className=" text-pink-700 dark:text-pink-800" />
 
       <NavigationMenu>
-        <NavigationMenuList className="gap-4">
-          <NavigationMenuItem>
+        <NavigationMenuList className="gap-4   text-pink-700 dark:text-pink-800 ">
+          <NavigationMenuItem className= "hover:underline underline-offset-4">
             <Link to="/">
               <NavigationMenuLink>Home</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
+    
+          <NavigationMenuItem className= "hover:underline underline-offset-4">
+            <Link to="/">
+              <NavigationMenuLink>Flavors</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
 
+          <NavigationMenuItem className= "hover:underline underline-offset-4">
+            <Link to="/Aboutus">
+              <NavigationMenuLink>About Us </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          
           {!state.user && (
-            <NavigationMenuItem>
+            <NavigationMenuItem className= "hover:underline underline-offset-4">
               <Link to="/signup">
                 <NavigationMenuLink>Signup</NavigationMenuLink>
               </Link>
@@ -50,7 +65,7 @@ export function Navbar() {
           )}
 
           {!state.user && (
-            <NavigationMenuItem>
+            <NavigationMenuItem className= "hover:underline underline-offset-4">
               <Link to="/login">
                 <NavigationMenuLink>Login</NavigationMenuLink>
               </Link>
@@ -58,19 +73,15 @@ export function Navbar() {
           )}
           
           {state.user && (
-            <NavigationMenuItem>
+            <NavigationMenuItem className= "hover:underline underline-offset-4">
                 <Button variant="outline">Logout</Button>
             </NavigationMenuItem>
           )}
 
-          <NavigationMenuItem>
-            <Link to="/docs">
-              <NavigationMenuLink>About Us </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+          
 
           {state.user?.role === ROLE.Admin && (
-            <NavigationMenuItem>
+            <NavigationMenuItem className= "hover:underline underline-offset-4">
               <Link to="/dashboard">
                 <NavigationMenuLink>Dashboard</NavigationMenuLink>
               </Link>
@@ -81,5 +92,6 @@ export function Navbar() {
 
       <Cart />
     </div>
+    </header>
   )
 }

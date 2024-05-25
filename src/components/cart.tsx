@@ -8,6 +8,7 @@ import api from "@/api"
 import { Product } from "@/types"
 
 
+
 type OrderItems = {
   quantity: number
   productId: string
@@ -38,26 +39,9 @@ export function Cart() {
      return acc+ curr.price
    }, 0)
 
-  //  this is how the backend of order_checkout looks like 
-  //  {
-  //   "quantity": 0,
-  //   "stockId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  //   "price": 0,
-  //   "orderCheckoutId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-  // }
-
-
-  // this is how stocks looks like 
-  // {
-  //   "productId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  //   "size": "string",
-  //   "color": "string"
-  // }
-   
-   const checkoutOrder: orderCheckout = {
+    const checkoutOrder: orderCheckout = {
     orderItems: []
    }
-
     Object.keys(groups).forEach((key) => {
       const products = groups[key]
       
@@ -66,7 +50,6 @@ export function Cart() {
         productId: key 
       })
     })
-    
     console.log("checkoutOrder:", checkoutOrder)
     const handleCheckout = async () => {
       try {
@@ -85,12 +68,26 @@ export function Cart() {
         return Promise.reject(new Error("Something went wrong"))
       }
     }
+  //  this is how the backend of order_checkout looks like 
+  //  {
+  //   "quantity": 0,
+  //   "stockId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  //   "price": 0,
+  //   "orderCheckoutId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+  // }
 
 
+  // this is how stocks looks like 
+  // {
+  //   "productId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  //   "size": "string",
+  //   "color": "string"
+  // }
+   
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">
+        <Button className=" text-pink-700 dark:text-pink-800" variant="secondary">
           <ShoppingCart />({Object.keys(groups).length})
         </Button>
       </PopoverTrigger>
@@ -110,13 +107,16 @@ export function Cart() {
                 <img src={product.image} alt={product.name} className="w-20 h-20 object-contain" />
                 <h4>{product.name}</h4>
                 <span className="font-bold">{total}</span>
+                <div>
                 <Button variant="outline" onClick={() => handleDeleteFromCart(product.id)}>
                   -
                 </Button>
+                
                 <span className="font-bold">({products.length})</span>
                 <Button variant="outline" onClick={() => handleAddToCart(product)}>
                   +
                 </Button>
+                </div>
                 {/* <Button variant="destructive" onClick={() => handleDeleteFromCart(product.id)}>
                   X
                 </Button> */}
@@ -128,5 +128,6 @@ export function Cart() {
         <Button onClick={handleCheckout}>Checkout</Button>
       </PopoverContent>
     </Popover>
+    
   )
 }

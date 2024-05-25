@@ -9,11 +9,16 @@ import { Dashboard } from "./Pages/dashboard"
 import { Login } from "./Pages/login"
 import { Signup } from "./Pages/signup"
 import { PrivateRoute } from "./components/privateRoute"
+import { AboutUs } from "./Pages/aboutUs"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />
+  },
+  {
+    path: "/aboutus",
+    element: <AboutUs /> 
   },
   {
     path: "/signup",
@@ -100,6 +105,17 @@ function App() {
       ...state,
       user: user
     })
+  }
+
+  const handleLogout = () => {
+    if (typeof window !== undefined) {
+      window.location.reload()
+    }
+    
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+
+    handleRemoveUser()
   }
 
   const handleRemoveUser = () => {

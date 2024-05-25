@@ -17,6 +17,9 @@ import {  Navbar } from "@/components/navbar"
 import { GlobalContext } from "@/App"
 import { Input } from "@/components/ui/input"
 
+import { ProductDetails } from "./productDetails"
+
+
 
 
 export function Home() {
@@ -57,6 +60,7 @@ export function Home() {
   
  }
 
+
   const handleSearch = (e: FormEvent) => {
     e.preventDefault()
   queryClient.invalidateQueries({ queryKey: ["products"]})
@@ -65,7 +69,7 @@ export function Home() {
   return (
     <>
       <Navbar />
-
+      
       <div> 
       <form onSubmit={handleSearch} className=" flex gap-4 mt-10 w-11/12 md:1/2 mx-auto mb-10">
       <Input type="search" placeholder="Search for a product here" onChange={handleChange}/>
@@ -95,6 +99,23 @@ export function Home() {
           </Card>
         ))}
       </section>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-[#f8e4e4] dark:bg-[#3e1212]">
+         <p className="text-xs text-[#7a2323] dark:text-[#f8e4e4]">© 2024 Swiss Roll Cakes. All rights reserved.</p>
+         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+           <Link className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]" to="#">
+             Contact
+           </Link>
+           <Link className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]" to="#">
+             Privacy
+           </Link>
+           <Link className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]" to="#">
+             Instagram
+           </Link>
+           <Link className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]" to="#">
+             Facebook
+           </Link>
+         </nav>
+       </footer>
       {error && <p className="text-red-500">{error.message}</p>}
     </>
   )
