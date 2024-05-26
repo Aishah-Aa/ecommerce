@@ -4,7 +4,9 @@ import { CakeSliceIcon, HeartIcon, LeafIcon, SmileIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function AboutUs (){
-     <Navbar/>  
+     
+      
+     <Navbar/>
     return(   
       <div className="w-full">
         <section className="relative h-[500px] overflow-hidden">
@@ -103,7 +105,7 @@ export function AboutUs (){
              Instagram
            </Link>
            <Link className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]" to="#">
-             Facebook
+             Snapchat
            </Link>
          </nav>
        </footer>

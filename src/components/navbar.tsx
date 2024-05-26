@@ -18,35 +18,31 @@ export function Navbar() {
   const context = useContext(GlobalContext)
   if (!context) throw Error("Context is missing")
   const { state, handleRemoveUser } = context
-  console.log(state)
 
   const handleLogout = () => {
     if (typeof window !== undefined) {
       window.location.reload()
     }
-    
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-
+    
     handleRemoveUser()
   }
 
   return (
+    
     <header>
     <div className="flex justify-between">
-      <CakeSlice className=" text-pink-700 dark:text-pink-800" />
-
+        
+            <Link to="/">
+            <CakeSlice className=" text-pink-700 dark:text-pink-800" />
+            </Link>
+            
       <NavigationMenu>
         <NavigationMenuList className="gap-4   text-pink-700 dark:text-pink-800 ">
           <NavigationMenuItem className= "hover:underline underline-offset-4">
             <Link to="/">
               <NavigationMenuLink>Home</NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-    
-          <NavigationMenuItem className= "hover:underline underline-offset-4">
-            <Link to="/">
-              <NavigationMenuLink>Flavors</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
 
@@ -74,11 +70,9 @@ export function Navbar() {
           
           {state.user && (
             <NavigationMenuItem className= "hover:underline underline-offset-4">
-                <Button variant="outline">Logout</Button>
+                <Button variant="outline" onClick={handleLogout}>Logout</Button>
             </NavigationMenuItem>
           )}
-
-          
 
           {state.user?.role === ROLE.Admin && (
             <NavigationMenuItem className= "hover:underline underline-offset-4">

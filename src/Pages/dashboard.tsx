@@ -51,7 +51,14 @@ export function Dashboard() {
 
   const getProducts = async () => {
     try {
-      const res = await api.get("/products")
+      const token = localStorage.getItem("token")
+
+      const res = await api.get("/products", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
 
       return res.data
     } catch (error) {
