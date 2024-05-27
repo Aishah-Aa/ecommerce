@@ -1,4 +1,5 @@
 export type Product = {
+  description: ReactNode
   id: string
   name: string
   categoryId: string

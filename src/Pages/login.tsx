@@ -53,8 +53,8 @@ export function Login() {
   }
 
   return (
-    <div>
-      <h3>Login Page</h3>
+    <div className="bg-[#FFF0F5] w-full">
+      <h3 className="font-serif tracking-tighter sm:text-5xl text-[#C21E56] ">Login Page</h3>
       <form action="POST" className="w-full md:w-1/3 mx-auto" onSubmit={handleSubmit}>
         <Input
           name="email"

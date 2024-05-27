@@ -1,4 +1,4 @@
-import jwt from "jwt-decode"
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -27,7 +27,6 @@ import api from "@/api"
 import { Navbar } from "@/components/navbar"
 import { EditDialog } from "@/components/editDialog"
 import { Category, Product, User } from "@/types"
-
 
 export function Dashboard() {
   const queryClient = useQueryClient()
@@ -59,7 +58,6 @@ export function Dashboard() {
         }
       })
 
-
       return res.data
     } catch (error) {
       console.error(error)
@@ -82,7 +80,7 @@ export function Dashboard() {
       return Promise.reject(new Error("Something went wrong"))
     }
   }
-  
+
   const getUsers = async () => {
     try {
       const token = localStorage.getItem("token")
@@ -169,8 +167,12 @@ export function Dashboard() {
   return (
     <>
       <Navbar />
-      <form className="mt-20 w-1/3 mx-auto" onSubmit={handleSubmit}>
-        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight"> Add New Products</h3>
+
+      <form className="mt-20 w-1/3 mx-auto " onSubmit={handleSubmit}>
+        <h3 className="scroll-m-20 text-2xl  font-serif tracking-tighter sm:text-5xl text-[#C21E56]">
+          {" "}
+          Add New Products
+        </h3>
         <Input
           className="mt-4"
           type="text"
@@ -216,7 +218,9 @@ export function Dashboard() {
       </form>
 
       <div>
-        <h1 className="scroll-m-20 text-4xl my-10 font-semibold tracking-tight">Products</h1>
+        <h1 className="scroll-m-20 text-4xl my-10 font-serif tracking-tighter sm:text-5xl text-[#C21E56]">
+          Products
+        </h1>
         <Table>
           <TableHeader>
             <TableRow>

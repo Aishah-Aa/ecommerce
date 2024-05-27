@@ -6,10 +6,11 @@
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  
+  margin-right: 10px;
+  border-radius: 50%;
+  
+ 
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
@@ -39,4 +40,26 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.h1 {
+  color: #C21E56;
+  font-size: large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.h2 {
+color: #CB4D5B;
+font-size: medium;
+font-family: fantasy;
+}
+.h3 {
+  color:#CD5C5C;
+  font-family: monospace;
+}
+.p{
+  color:#DA7E7E;
+  font-family: cursive;
+}
+.button{
+  color: #E6A09F;
 }

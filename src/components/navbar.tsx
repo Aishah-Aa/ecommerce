@@ -11,8 +11,7 @@ import { useContext } from "react"
 import { GlobalContext } from "@/App"
 import { ROLE } from "@/types"
 import { Button } from "./ui/button"
-import { CakeSlice } from "lucide-react"
-
+import { CakeSlice, CakeSliceIcon } from "lucide-react"
 
 export function Navbar() {
   const context = useContext(GlobalContext)
@@ -23,69 +22,66 @@ export function Navbar() {
     if (typeof window !== undefined) {
       window.location.reload()
     }
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+
     handleRemoveUser()
   }
 
   return (
-    
-    <header>
-    <div className="flex justify-between">
-        
-            <Link to="/">
-            <CakeSlice className=" text-pink-700 dark:text-pink-800" />
-            </Link>
-            
-      <NavigationMenu>
-        <NavigationMenuList className="gap-4   text-pink-700 dark:text-pink-800 ">
-          <NavigationMenuItem className= "hover:underline underline-offset-4">
-            <Link to="/">
-              <NavigationMenuLink>Home</NavigationMenuLink>
+    <div className="flex justify-between  mb-10">
+      <div> 
+      <header className="  justify-between h-6 w-6 text-pink-700">
+        {/* <img src="src/img/logo.jpg" alt="logo" className=" border-[#C21E56] logo" /> */}
+        <CakeSliceIcon className="text-lg font-normal">
+          <span>
+         <h1> Sweet Rolls Bakery </h1>
+          </span>
+          </CakeSliceIcon>
+      </header>
+        </div>
+      <NavigationMenu className="flex justify-between">
+        <NavigationMenuList />
+        <NavigationMenuItem className="gap-4 text-[#C21E56] hover:underline">
+          <Link to="/">
+            <NavigationMenuLink>Home</NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem className="gap-4 text-[#C21E56] hover:underline">
+          <Link to="/Aboutus">
+            <NavigationMenuLink>About Us </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        {!state.user && (
+          <NavigationMenuItem className="gap-4 text-[#C21E56] hover:underline">
+            <Link to="/signup">
+              <NavigationMenuLink>Signup</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-
-          <NavigationMenuItem className= "hover:underline underline-offset-4">
-            <Link to="/Aboutus">
-              <NavigationMenuLink>About Us </NavigationMenuLink>
+        )}
+        {!state.user && (
+          <NavigationMenuItem className="gap-4 text-[#C21E56] hover:underline underline-offset-4">
+            <Link to="/login">
+              <NavigationMenuLink>Login</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          
-          {!state.user && (
-            <NavigationMenuItem className= "hover:underline underline-offset-4">
-              <Link to="/signup">
-                <NavigationMenuLink>Signup</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
-
-          {!state.user && (
-            <NavigationMenuItem className= "hover:underline underline-offset-4">
-              <Link to="/login">
-                <NavigationMenuLink>Login</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
-          
-          {state.user && (
-            <NavigationMenuItem className= "hover:underline underline-offset-4">
-                <Button variant="outline" onClick={handleLogout}>Logout</Button>
-            </NavigationMenuItem>
-          )}
-
-          {state.user?.role === ROLE.Admin && (
-            <NavigationMenuItem className= "hover:underline underline-offset-4">
-              <Link to="/dashboard">
-                <NavigationMenuLink>Dashboard</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
-        </NavigationMenuList>
+        )}
+        {state.user && (
+          <NavigationMenuItem className="gap-4 text-[#C21E56]  hover:underline">
+            <Button variant="ghost" onClick={handleLogout}>
+              Logout
+            </Button>
+          </NavigationMenuItem>
+        )}
+        {state.user?.role === ROLE.Admin && (
+          <NavigationMenuItem className="gap-4 text-[#C21E56] hover:underline ">
+            <Link to="/dashboard">
+              <NavigationMenuLink>Dashboard</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        )}
       </NavigationMenu>
-
       <Cart />
     </div>
-    </header>
   )
 }

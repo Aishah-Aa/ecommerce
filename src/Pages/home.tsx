@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { ChangeEvent, FormEvent, useContext, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom"
@@ -16,9 +9,8 @@ import api from "@/api"
 import { Navbar } from "@/components/navbar"
 import { GlobalContext } from "@/App"
 import { Input } from "@/components/ui/input"
-
-import { ProductDetails } from "./productDetails"
 import { Hero } from "@/components/hero"
+import { Subscribe } from "@/components/subcribe"
 
 export function Home() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -65,6 +57,7 @@ export function Home() {
     <>
       <Navbar />
       <Hero />
+      <Subscribe />
 
       <div>
         <form onSubmit={handleSearch} className=" flex gap-4 mt-10 w-11/12 md:1/2 mx-auto mb-10">
@@ -73,13 +66,15 @@ export function Home() {
         </form>
       </div>
 
-      <section id="product-list" className="flex flex-col md:flex-row gap-4 max-w-6xl mx-auto flex-wrap">
+      <section
+        id="product-list"
+        className="flex flex-col md:flex-row gap-4 max-w-6xl mx-auto flex-wrap"
+      >
         {data?.map((product) => (
           <Card key={product.id} className="w-[270px]">
             <CardHeader>
               <img alt={product.name} src={product.image} className="mb-2 h-44  object-contain" />
               <CardTitle>{product.name}</CardTitle>
-              <CardDescription>Read More..</CardDescription>
             </CardHeader>
             <CardContent>
               <p>{product.price}.00SR</p>
@@ -95,35 +90,23 @@ export function Home() {
           </Card>
         ))}
       </section>
-
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-[#f8e4e4] dark:bg-[#3e1212]">
-        <p className="text-xs text-[#7a2323] dark:text-[#f8e4e4]">
+      <div></div>
+      <footer className="flex flex-col bg-[#FFF0F5] gap-2 sm:flex-row py-6 w-full font-normal shrink-0 items-center px-4 md:px-6 border-t text-[#C21E56]">
+        <p className="text-xs color:[#C21E56] font-normal">
           © 2024 Swiss Roll Cakes. All rights reserved.
         </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link
-            className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]"
+            className="text-xs hover:underline  font-normal underline-offset-4  text-[#C21E56]"
             to="#"
           >
-            Contact
+            Contact Us
           </Link>
           <Link
-            className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]"
+            className="text-xs hover:underline font-normal underline-offset-4 text-[#C21E56] "
             to="#"
           >
             Privacy
-          </Link>
-          <Link
-            className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]"
-            to="#"
-          >
-            Instagram
-          </Link>
-          <Link
-            className="text-xs hover:underline underline-offset-4 text-[#c42a2a] dark:text-[#f8e4e4]"
-            to="#"
-          >
-            Facebook
           </Link>
         </nav>
       </footer>

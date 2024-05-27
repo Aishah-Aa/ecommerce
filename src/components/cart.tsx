@@ -29,7 +29,7 @@ export function Cart() {
     return { ...acc, [key]: [...curGroup, obj] }
   }, {} as { [productId: string]: Product[] })
 
-  console.log("groups cart item by id ", groups)
+  console.log("groups cart item by id ")
 
   const total = state.cart.reduce((acc, curr) => {
     return acc + curr.price

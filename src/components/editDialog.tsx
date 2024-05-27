@@ -53,7 +53,7 @@ export function EditDialog({ product }: { product: Product }) {
         <DialogHeader>
           <DialogTitle>Edit</DialogTitle>
           <DialogDescription>
-            Make changes to your product here. Click save when done.
+            <p>Make changes to your product here. Click save when done. </p>
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

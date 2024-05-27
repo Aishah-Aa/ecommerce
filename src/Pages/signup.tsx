@@ -43,8 +43,8 @@ export function Signup() {
   }
 
   return (
-    <div>
-      <h3>Signup Page</h3>
+    <div className="bg-[#FFF0F5] w-full">
+      <h3 className="font-serif tracking-tighter sm:text-5xl text-[#C21E56]">Signup Page</h3>
       <form action="POST" onSubmit={handleSubmit} className="w-full md:w-1/3 mx-auto">
         <Input
           name="firstName"

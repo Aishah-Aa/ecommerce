@@ -10,6 +10,7 @@ import { Login } from "./Pages/login"
 import { Signup } from "./Pages/signup"
 import { PrivateRoute } from "./components/privateRoute"
 import { AboutUs } from "./Pages/aboutUs"
+import { News } from "./Pages/news"
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/aboutus",
-    element: <AboutUs /> 
+    element: <AboutUs />
+  },
+  {
+    path: "/news",
+    element: <News />
   },
   {
     path: "/signup",
@@ -111,9 +116,9 @@ function App() {
     if (typeof window !== undefined) {
       window.location.reload()
     }
-    
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
+
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
 
     handleRemoveUser()
   }
