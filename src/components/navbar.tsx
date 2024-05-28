@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom"
+import { CakeSliceIcon } from "lucide-react"
+
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList
 } from "./ui/navigation-menu"
-
 import { Cart } from "./cart"
 import { useContext } from "react"
 import { GlobalContext } from "@/App"
 import { ROLE } from "@/types"
 import { Button } from "./ui/button"
-import { CakeSlice, CakeSliceIcon } from "lucide-react"
 
 export function Navbar() {
   const context = useContext(GlobalContext)
@@ -30,16 +30,15 @@ export function Navbar() {
 
   return (
     <div className="flex justify-between  mb-10">
-      <div> 
-      <header className="  justify-between h-6 w-6 text-pink-700">
-        {/* <img src="src/img/logo.jpg" alt="logo" className=" border-[#C21E56] logo" /> */}
-        <CakeSliceIcon className="text-lg font-normal">
-          <span>
-         <h1> Sweet Rolls Bakery </h1>
-          </span>
+      <div>
+        <header className="  justify-between h-6 w-6 text-pink-700">
+          <CakeSliceIcon className="text-lg font-normal">
+            <span>
+              <h1> Sweet Rolls Bakery </h1>
+            </span>
           </CakeSliceIcon>
-      </header>
-        </div>
+        </header>
+      </div>
       <NavigationMenu className="flex justify-between">
         <NavigationMenuList />
         <NavigationMenuItem className="gap-4 text-[#C21E56] hover:underline">
