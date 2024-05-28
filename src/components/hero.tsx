@@ -42,7 +42,7 @@ export function Hero() {
               alt="Swiss Roll Cakes"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
               height="550"
-              src="src/img/tm.jpg"
+              src="img/tm.jpg"
               width="550"
             />
           </div>
@@ -69,7 +69,7 @@ export function Hero() {
               alt="Swiss Roll Cakes"
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
               height="710"
-              src="src/img/mtb.jpg"
+              src="img/mtb.jpg"
               width="650"
             />
             <div className="flex flex-col justify-center space-y-4">
