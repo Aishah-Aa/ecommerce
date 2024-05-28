@@ -11,7 +11,7 @@ export function AboutUs() {
           alt="Swiss Roll Cake"
           className="absolute inset-0 h-full w-full object-cover object-center"
           height={1080}
-          src="src/img/at.jpg"
+          src="img/at.jpg"
           style={{
             aspectRatio: "1920/1080",
             objectFit: "cover"
